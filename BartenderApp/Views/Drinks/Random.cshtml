@@ -1,0 +1,30 @@
+﻿@model BartenderApp.ViewModels.RandomDrinksViewModel
+     
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+   This will lable the drink Top drink or not 
+*@
+@{
+    var drinkName = Model.Customer.Count > 0 ? "Top Drink" : null;
+}
+
+<h2 class ="@drinkName">@Model.Drinks.Name</h2>
+
+@if (Model.Customer.Count == 0)
+{
+    <p>There has been 0 orders for this drink today.</p>
+}
+else
+{
+
+    <ul>
+        @foreach (var customer in Model.Customer)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
